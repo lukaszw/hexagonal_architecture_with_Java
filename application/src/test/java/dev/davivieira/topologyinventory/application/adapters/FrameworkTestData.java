@@ -1,5 +1,8 @@
-package dev.davivieira.topologyinventory.application.serviceimpl;
+package dev.davivieira.topologyinventory.application.adapters;
 
+import dev.davivieira.topologyinventory.application.NetworkManagement;
+import dev.davivieira.topologyinventory.application.RouterManagement;
+import dev.davivieira.topologyinventory.application.SwitchManagement;
 import dev.davivieira.topologyinventory.application.ports.input.NetworkManagementInputPort;
 import dev.davivieira.topologyinventory.application.ports.input.RouterManagementInputPort;
 import dev.davivieira.topologyinventory.application.ports.input.SwitchManagementInputPort;
@@ -20,6 +23,9 @@ import dev.davivieira.topologyinventory.domain.vo.Network;
 import dev.davivieira.topologyinventory.domain.vo.RouterType;
 import dev.davivieira.topologyinventory.domain.vo.SwitchType;
 import dev.davivieira.topologyinventory.domain.vo.Vendor;
+//import dev.davivieira.topologyinventory.framework.adapters.input.generic.NetworkManagementGenericAdapter;
+//import dev.davivieira.topologyinventory.framework.adapters.input.generic.RouterManagementGenericAdapter;
+//import dev.davivieira.topologyinventory.framework.adapters.input.generic.SwitchManagementGenericAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,9 +68,9 @@ public class FrameworkTestData {
 
     protected Location locationB;
 
-    protected RouterManagementGenericAdapter routerManagementGenericAdapter;
-    protected SwitchManagementGenericAdapter switchManagementGenericAdapter;
-    protected NetworkManagementGenericAdapter networkManagementGenericAdapter;
+    protected RouterManagement routerManagementGenericAdapter;
+    protected SwitchManagement switchManagementGenericAdapter;
+    protected NetworkManagement networkManagementGenericAdapter;
 
     protected SwitchManagementOutputPort switchManagementOutputPort;
     protected RouterManagementOutputPort routerManagementOutputPort;
@@ -252,6 +258,6 @@ public class FrameworkTestData {
                 routerType(RouterType.EDGE).
                 build();
 
-        this.networkSwitch.setRouterId(edgeRouter.getId() );
+        this.networkSwitch.setRouterId(edgeRouter.getId());
     }
 }

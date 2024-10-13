@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.application.adapter;
+package dev.davivieira.topologyinventory.application.adapters;
 
 import dev.davivieira.topologyinventory.domain.entity.Switch;
 import dev.davivieira.topologyinventory.domain.service.NetworkService;

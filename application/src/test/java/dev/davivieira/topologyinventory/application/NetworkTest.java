@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.framework;
+package dev.davivieira.topologyinventory.application;
 
 import dev.davivieira.topologyinventory.domain.entity.Switch;
 import dev.davivieira.topologyinventory.domain.service.NetworkService;
@@ -11,6 +11,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 import java.util.function.Predicate;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 

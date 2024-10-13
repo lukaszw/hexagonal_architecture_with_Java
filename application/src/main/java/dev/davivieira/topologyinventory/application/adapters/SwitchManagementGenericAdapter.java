@@ -19,7 +19,7 @@ public class SwitchManagementGenericAdapter implements SwitchManagement {
     private final SwitchManagementUseCase switchManagementUseCase;
     private final RouterManagementUseCase routerManagementUseCase;
 
-    public SwitchManagementGenericAdapter(SwitchManagementUseCase switchManagementUseCase, RouterManagementUseCase routerManagementUseCase) {
+    public SwitchManagementGenericAdapter(RouterManagementUseCase routerManagementUseCase, SwitchManagementUseCase switchManagementUseCase) {
         this.switchManagementUseCase = switchManagementUseCase;
         this.routerManagementUseCase = routerManagementUseCase;
 //        setPorts();

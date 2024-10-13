@@ -1,5 +1,8 @@
-package dev.davivieira.topologyinventory.framework;
+package dev.davivieira.topologyinventory.application;
 
+import dev.davivieira.topologyinventory.application.adapters.NetworkManagementGenericAdapter;
+import dev.davivieira.topologyinventory.application.adapters.RouterManagementGenericAdapter;
+import dev.davivieira.topologyinventory.application.adapters.SwitchManagementGenericAdapter;
 import dev.davivieira.topologyinventory.application.ports.output.RouterManagementOutputPort;
 import dev.davivieira.topologyinventory.application.ports.output.SwitchManagementOutputPort;
 import dev.davivieira.topologyinventory.application.usecases.NetworkManagementUseCase;

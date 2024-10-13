@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.application.adapter;
+package dev.davivieira.topologyinventory.application;
 
 import dev.davivieira.topologyinventory.domain.entity.EdgeRouter;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
@@ -19,22 +19,22 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SwitchTest extends FrameworkTestData {
 
-    public SwitchTest() {
+    public SwitchTest(){
         loadPortsAndUseCases();
         loadData();
     }
 
     @Test
     @Order(1)
-    public void retrieveSwitch() {
-        Id switchId = Id.withId("922dbcd5-d071-41bd-920b-00f83eb4bb46");
+    public void retrieveSwitch(){
+        Id switchId = Id.withId("922dbcd5-d071-41bd-920b-00f83eb4bb47");
         Switch networkSwitch = switchManagementGenericAdapter.retrieveSwitch(switchId);
         assertNotNull(networkSwitch);
     }
 
     @Test
     @Order(2)
-    public void createAndAddSwitchToEdgeRouter() {
+    public void createAndAddSwitchToEdgeRouter(){
         var expectedSwitchIP = "15.0.0.1";
         var id = Id.withId("b07f5187-2d82-4975-a14b-bdbad9a8ad46");
         EdgeRouter edgeRouter = switchManagementGenericAdapter.createAndAddSwitchToEdgeRouter(
@@ -52,13 +52,13 @@ public class SwitchTest extends FrameworkTestData {
                 .filter(ipAddress -> ipAddress.equals(expectedSwitchIP))
                 .findFirst()
                 .get();
-        assertEquals(expectedSwitchIP, actualSwitchIP);
+        assertEquals(expectedSwitchIP,actualSwitchIP);
     }
 
     @Test
     @Order(3)
-    public void removeSwitchFromEdgeRouter() {
-        Id switchId = Id.withId("922dbcd5-d071-41bd-920b-00f83eb4bb46");
+    public void removeSwitchFromEdgeRouter(){
+        Id switchId = Id.withId("922dbcd5-d071-41bd-920b-00f83eb4bb47");
         Id edgerRouterId = Id.withId("b07f5187-2d82-4975-a14b-bdbad9a8ad46");
         EdgeRouter edgeRouter = switchManagementGenericAdapter
                 .removeSwitchFromEdgeRouter(switchId, edgerRouterId);
