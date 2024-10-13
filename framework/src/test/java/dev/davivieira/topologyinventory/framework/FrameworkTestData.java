@@ -1,8 +1,5 @@
 package dev.davivieira.topologyinventory.framework;
 
-import dev.davivieira.topologyinventory.application.ports.input.NetworkManagementInputPort;
-import dev.davivieira.topologyinventory.application.ports.input.RouterManagementInputPort;
-import dev.davivieira.topologyinventory.application.ports.input.SwitchManagementInputPort;
 import dev.davivieira.topologyinventory.application.ports.output.RouterManagementOutputPort;
 import dev.davivieira.topologyinventory.application.ports.output.SwitchManagementOutputPort;
 import dev.davivieira.topologyinventory.application.usecases.NetworkManagementUseCase;
@@ -31,15 +28,6 @@ import java.util.Map;
 import java.util.ServiceLoader;
 
 public class FrameworkTestData {
-
-    protected RouterManagementUseCase routerManagementUseCase;
-
-    protected SwitchManagementUseCase switchManagementUseCase;
-
-    protected NetworkManagementUseCase networkManagementUseCase;
-
-    protected Router router;
-
     protected List<Router> routers = new ArrayList<>();
 
     protected List<Switch> switches = new ArrayList<>();
@@ -70,67 +58,33 @@ public class FrameworkTestData {
     protected SwitchManagementGenericAdapter switchManagementGenericAdapter;
     protected NetworkManagementGenericAdapter networkManagementGenericAdapter;
 
-    protected SwitchManagementOutputPort switchManagementOutputPort;
-    protected RouterManagementOutputPort routerManagementOutputPort;
-
     protected void loadPortsAndUseCases() {
         // Load router implementations
-//        ServiceLoader<RouterManagementUseCase> loaderUseCaseRouter = ServiceLoader.load(RouterManagementUseCase.class);
-//        RouterManagementUseCase routerManagementUseCase = loaderUseCaseRouter.findFirst().get();
-//        ServiceLoader<RouterManagementOutputPort> loaderOutputRouter = ServiceLoader.load(RouterManagementOutputPort.class);
-//        RouterManagementOutputPort routerManagementOutputPort = loaderOutputRouter.findFirst().get();
+        ServiceLoader<RouterManagementUseCase> loaderUseCaseRouter = ServiceLoader.load(RouterManagementUseCase.class);
+        RouterManagementUseCase routerManagementUseCase = loaderUseCaseRouter.findFirst().get();
+        ServiceLoader<RouterManagementOutputPort> loaderOutputRouter = ServiceLoader.load(RouterManagementOutputPort.class);
+        RouterManagementOutputPort routerManagementOutputPort = loaderOutputRouter.findFirst().get();
 
         // Load switch implementations
-//        ServiceLoader<SwitchManagementUseCase> loaderUseCaseSwitch = ServiceLoader.load(SwitchManagementUseCase.class);
-//        SwitchManagementUseCase switchManagementUseCase = loaderUseCaseSwitch.findFirst().get();
-//        ServiceLoader<SwitchManagementOutputPort> loaderOutputSwitch = ServiceLoader.load(SwitchManagementOutputPort.class);
-//        SwitchManagementOutputPort switchManagementOutputPort = loaderOutputSwitch.findFirst().get();
+        ServiceLoader<SwitchManagementUseCase> loaderUseCaseSwitch = ServiceLoader.load(SwitchManagementUseCase.class);
+        SwitchManagementUseCase switchManagementUseCase = loaderUseCaseSwitch.findFirst().get();
+        ServiceLoader<SwitchManagementOutputPort> loaderOutputSwitch = ServiceLoader.load(SwitchManagementOutputPort.class);
+        SwitchManagementOutputPort switchManagementOutputPort = loaderOutputSwitch.findFirst().get();
 
         // Load switch implementations
-//        ServiceLoader<NetworkManagementUseCase> loaderUseCaseNetwork = ServiceLoader.load(NetworkManagementUseCase.class);
-//        NetworkManagementUseCase networkManagementUseCase = loaderUseCaseNetwork.findFirst().get();
+        ServiceLoader<NetworkManagementUseCase> loaderUseCaseNetwork = ServiceLoader.load(NetworkManagementUseCase.class);
+        NetworkManagementUseCase networkManagementUseCase = loaderUseCaseNetwork.findFirst().get();
 
-//        routerManagementUseCase.setOutputPort(routerManagementOutputPort);
-//        switchManagementUseCase.setOutputPort(switchManagementOutputPort);
-//        networkManagementUseCase.setOutputPort(routerManagementOutputPort);
+        routerManagementUseCase.setOutputPort(routerManagementOutputPort);
+        switchManagementUseCase.setOutputPort(switchManagementOutputPort);
+        networkManagementUseCase.setOutputPort(routerManagementOutputPort);
 
-        this.routerManagementOutputPort = new RouterManagementOutputPort() {
-            @Override
-            public Router retrieveRouter(Id id) {
-                return routersOfCoreRouter.get(id);
-            }
-
-            @Override
-            public Router removeRouter(Id id) {
-                var removed = routersOfCoreRouter.remove(id);
-                return removed == null ? removed : null;
-            }
-
-            @Override
-            public Router persistRouter(Router router) {
-                var previous = routersOfCoreRouter.put(router.getId(), router);
-                return router;
-            }
-        };
-
-        this.switchManagementOutputPort = new SwitchManagementOutputPort() {
-            @Override
-            public Switch retrieveSwitch(Id id) {
-                return networkSwitch;
-            }
-        };
-
-        this.routerManagementUseCase = new RouterManagementInputPort(this.routerManagementOutputPort);
-        this.switchManagementUseCase = new SwitchManagementInputPort(this.switchManagementOutputPort);
-        this.networkManagementUseCase = new NetworkManagementInputPort(this.routerManagementOutputPort);
-
-        this.routerManagementGenericAdapter = new RouterManagementGenericAdapter(this.routerManagementUseCase);
-        this.switchManagementGenericAdapter = new SwitchManagementGenericAdapter(this.routerManagementUseCase, this.switchManagementUseCase);
-        this.networkManagementGenericAdapter = new NetworkManagementGenericAdapter(this.switchManagementUseCase, this.networkManagementUseCase);
-
+        this.routerManagementGenericAdapter = new RouterManagementGenericAdapter(routerManagementUseCase);
+        this.switchManagementGenericAdapter = new SwitchManagementGenericAdapter(routerManagementUseCase, switchManagementUseCase);
+        this.networkManagementGenericAdapter = new NetworkManagementGenericAdapter(switchManagementUseCase, networkManagementUseCase);
     }
 
-    public void loadData() {
+    public void loadData(){
         this.locationA = new Location(
                 "Amos Ln",
                 "Tully",
@@ -147,7 +101,7 @@ public class FrameworkTestData {
                 "Brazil",
                 10F,
                 -10F);
-        this.network = Network.builder().
+        this.network  = Network.builder().
                 networkAddress(IP.fromAddress("20.0.0.0")).
                 networkName("TestNetwork").
                 networkCidr(8).
@@ -173,63 +127,6 @@ public class FrameworkTestData {
                 switches(switchesOfEdgeRouter).
                 build();
         this.routersOfCoreRouter.put(edgeRouter.getId(), edgeRouter);
-
-        var routerA = EdgeRouter.builder()
-                .id(Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0a"))
-                .routerType(RouterType.EDGE)
-                .vendor(Vendor.JUNIPER)
-                .model(Model.XYZ0001)
-                .ip(IP.fromAddress("5.0.0.5"))
-                .location(locationA)
-                .build();
-        this.routersOfCoreRouter.put(routerA.getId(), routerA);
-
-        var routerCore = CoreRouter.builder()
-                .id(Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c"))
-                .routerType(RouterType.CORE)
-                .vendor(Vendor.CISCO)
-                .model(Model.XYZ0001)
-                .ip(IP.fromAddress("1.0.0.1"))
-                .location(locationA)
-                .routers(this.routersOfCoreRouter)
-                .build();
-        this.routersOfCoreRouter.put(routerCore.getId(), routerCore);
-
-        var routerJupiter = EdgeRouter.builder()
-                .id(Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0b"))
-                .routerType(RouterType.EDGE)
-                .vendor(Vendor.JUNIPER)
-                .model(Model.XYZ0001)
-                .ip(IP.fromAddress("6.0.0.6"))
-                .location(locationA)
-                .build();
-        this.routersOfCoreRouter.put(routerJupiter.getId(), routerJupiter);
-
-        var switchNet = Switch.builder()
-                .id(Id.withId("922dbcd5-d071-41bd-920b-00f83eb4bb46"))
-                .routerId(Id.withId("b07f5187-2d82-4975-a14b-bdbad9a8ad46"))
-                .switchType(SwitchType.LAYER3)
-                .vendor(Vendor.JUNIPER)
-                .model(Model.XYZ0004)
-                .ip(IP.fromAddress("9.0.0.9"))
-                .location(locationA)
-                .switchNetworks(new ArrayList<>())
-                .build();
-//        this.switchesOfEdgeRouter.put(switchNet.getId(), switchNet);
-
-        Map<Id, Switch> switchesMap = new HashMap<>();
-        switchesMap.put(switchNet.getId(), switchNet);
-        var router = EdgeRouter.builder()
-                .id(Id.withId("b07f5187-2d82-4975-a14b-bdbad9a8ad46"))
-                .routerType(RouterType.EDGE)
-                .vendor(Vendor.HP)
-                .model(Model.XYZ0002)
-                .ip(IP.fromAddress("2.0.0.2"))
-                .location(locationA)
-                .switches(switchesMap)
-                .build();
-        this.routersOfCoreRouter.put(router.getId(), router);
-
         this.coreRouter = CoreRouter.builder().
                 id(Id.withoutId()).
                 vendor(Vendor.HP).
@@ -255,7 +152,5 @@ public class FrameworkTestData {
                 location(locationA).
                 routerType(RouterType.EDGE).
                 build();
-
-        this.networkSwitch.setRouterId(edgeRouter.getId() );
     }
 }
