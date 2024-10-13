@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.framework.serviceimpl;
+package dev.davivieira.topologyinventory.application.serviceimpl;
 
 import dev.davivieira.topologyinventory.domain.entity.CoreRouter;
 import dev.davivieira.topologyinventory.domain.vo.IP;

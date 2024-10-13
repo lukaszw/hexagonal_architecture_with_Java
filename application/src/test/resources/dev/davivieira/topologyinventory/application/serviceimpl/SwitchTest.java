@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.framework.serviceimpl;
+package dev.davivieira.topologyinventory.application.serviceimpl;
 
 import dev.davivieira.topologyinventory.domain.entity.EdgeRouter;
 import dev.davivieira.topologyinventory.domain.entity.Switch;

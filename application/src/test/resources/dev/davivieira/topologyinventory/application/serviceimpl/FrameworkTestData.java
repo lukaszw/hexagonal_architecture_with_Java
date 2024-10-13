@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.framework.serviceimpl;
+package dev.davivieira.topologyinventory.application.serviceimpl;
 
 import dev.davivieira.topologyinventory.application.ports.input.NetworkManagementInputPort;
 import dev.davivieira.topologyinventory.application.ports.input.RouterManagementInputPort;
@@ -20,15 +20,11 @@ import dev.davivieira.topologyinventory.domain.vo.Network;
 import dev.davivieira.topologyinventory.domain.vo.RouterType;
 import dev.davivieira.topologyinventory.domain.vo.SwitchType;
 import dev.davivieira.topologyinventory.domain.vo.Vendor;
-import dev.davivieira.topologyinventory.framework.adapters.input.generic.NetworkManagementGenericAdapter;
-import dev.davivieira.topologyinventory.framework.adapters.input.generic.RouterManagementGenericAdapter;
-import dev.davivieira.topologyinventory.framework.adapters.input.generic.SwitchManagementGenericAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.ServiceLoader;
 
 public class FrameworkTestData {
 

@@ -17,9 +17,6 @@ import dev.davivieira.topologyinventory.domain.vo.Network;
 import dev.davivieira.topologyinventory.domain.vo.RouterType;
 import dev.davivieira.topologyinventory.domain.vo.SwitchType;
 import dev.davivieira.topologyinventory.domain.vo.Vendor;
-import dev.davivieira.topologyinventory.framework.adapters.input.generic.NetworkManagementGenericAdapter;
-import dev.davivieira.topologyinventory.framework.adapters.input.generic.RouterManagementGenericAdapter;
-import dev.davivieira.topologyinventory.framework.adapters.input.generic.SwitchManagementGenericAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
