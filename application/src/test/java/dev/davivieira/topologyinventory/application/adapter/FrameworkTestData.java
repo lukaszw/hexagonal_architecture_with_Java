@@ -1,11 +1,11 @@
-package dev.davivieira.topologyinventory.adapter;
+package dev.davivieira.topologyinventory.application.adapter;
 
 import dev.davivieira.topologyinventory.application.NetworkManagement;
-import dev.davivieira.topologyinventory.application.NetworkManagementGenericAdapter;
+import dev.davivieira.topologyinventory.application.adapters.NetworkManagementGenericAdapter;
 import dev.davivieira.topologyinventory.application.RouterManagement;
-import dev.davivieira.topologyinventory.application.RouterManagementGenericAdapter;
+import dev.davivieira.topologyinventory.application.adapters.RouterManagementGenericAdapter;
 import dev.davivieira.topologyinventory.application.SwitchManagement;
-import dev.davivieira.topologyinventory.application.SwitchManagementGenericAdapter;
+import dev.davivieira.topologyinventory.application.adapters.SwitchManagementGenericAdapter;
 import dev.davivieira.topologyinventory.application.ports.input.NetworkManagementInputPort;
 import dev.davivieira.topologyinventory.application.ports.input.RouterManagementInputPort;
 import dev.davivieira.topologyinventory.application.ports.input.SwitchManagementInputPort;

@@ -1,5 +1,6 @@
-package dev.davivieira.topologyinventory.application;
+package dev.davivieira.topologyinventory.application.adapters;
 
+import dev.davivieira.topologyinventory.application.NetworkManagement;
 import dev.davivieira.topologyinventory.application.usecases.NetworkManagementUseCase;
 import dev.davivieira.topologyinventory.application.usecases.SwitchManagementUseCase;
 import dev.davivieira.topologyinventory.domain.entity.Switch;

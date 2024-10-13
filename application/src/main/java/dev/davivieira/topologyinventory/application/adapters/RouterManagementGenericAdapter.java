@@ -1,5 +1,6 @@
-package dev.davivieira.topologyinventory.application;
+package dev.davivieira.topologyinventory.application.adapters;
 
+import dev.davivieira.topologyinventory.application.RouterManagement;
 import dev.davivieira.topologyinventory.application.usecases.RouterManagementUseCase;
 import dev.davivieira.topologyinventory.domain.entity.CoreRouter;
 import dev.davivieira.topologyinventory.domain.entity.Router;
