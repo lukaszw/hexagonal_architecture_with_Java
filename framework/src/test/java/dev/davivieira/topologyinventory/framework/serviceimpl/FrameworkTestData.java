@@ -256,6 +256,6 @@ public class FrameworkTestData {
                 routerType(RouterType.EDGE).
                 build();
 
-        this.networkSwitch.setRouterId(edgeRouter.getId() );
+        this.networkSwitch.setRouterId(edgeRouter.getId());
     }
 }

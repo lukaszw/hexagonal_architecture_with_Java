@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.application.adapter;
+package dev.davivieira.topologyinventory.application;
 
 import dev.davivieira.topologyinventory.domain.entity.Switch;
 import dev.davivieira.topologyinventory.domain.service.NetworkService;
@@ -19,18 +19,17 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class NetworkTest extends FrameworkTestData {
 
-    public NetworkTest() {
+    public NetworkTest(){
         loadPortsAndUseCases();
         loadData();
     }
-
     @Test
     @Order(1)
-    public void addNetworkToSwitch() {
+    public void addNetworkToSwitch(){
         Id switchId = Id.withId("922dbcd5-d071-41bd-920b-00f83eb4bb46");
 
-        Network network = Network.builder().
-                networkAddress(IP.fromAddress("10.0.0.0")).
+        var network  = Network.builder().
+                networkAddress(IP.fromAddress("40.0.0.0")).
                 networkName("Network").
                 networkCidr(8).
                 build();
@@ -40,10 +39,9 @@ public class NetworkTest extends FrameworkTestData {
         Network actualNetwork = NetworkService.findNetwork(networkSwitch.getSwitchNetworks(), predicate);
         assertEquals(network, actualNetwork);
     }
-
     @Test
     @Order(2)
-    public void removeNetworkFromSwitch() {
+    public void removeNetworkFromSwitch(){
         Id switchId = Id.withId("922dbcd5-d071-41bd-920b-00f83eb4bb46");
         var networkName = "TestNetwork";
         Predicate<Network> predicate = Network.getNetworkNamePredicate(networkName);
@@ -53,5 +51,4 @@ public class NetworkTest extends FrameworkTestData {
         networkSwitch = networkManagementGenericAdapter.removeNetworkFromSwitch(networkName, switchId);
         assertNull(networkSwitch);
     }
-
 }

@@ -3,8 +3,12 @@ module application {
     exports dev.davivieira.topologyinventory.application.ports.output;
     exports dev.davivieira.topologyinventory.application.ports.input;
     exports dev.davivieira.topologyinventory.application;
+    exports dev.davivieira.topologyinventory.application.adapters;
     requires domain;
     requires static lombok;
+
+    exports dev.davivieira.topologyinventory.application.adapters.out;
+    opens dev.davivieira.topologyinventory.application.adapters.out;
 
     provides dev.davivieira.topologyinventory.application.usecases.RouterManagementUseCase
             with dev.davivieira.topologyinventory.application.ports.input.RouterManagementInputPort;
@@ -12,4 +16,14 @@ module application {
             with dev.davivieira.topologyinventory.application.ports.input.SwitchManagementInputPort;
     provides dev.davivieira.topologyinventory.application.usecases.NetworkManagementUseCase
             with dev.davivieira.topologyinventory.application.ports.input.NetworkManagementInputPort;
+    provides dev.davivieira.topologyinventory.application.ports.output.RouterManagementOutputPort
+            with dev.davivieira.topologyinventory.application.adapters.out.RouterManagementMapRepository;
+    provides dev.davivieira.topologyinventory.application.ports.output.SwitchManagementOutputPort
+            with dev.davivieira.topologyinventory.application.adapters.out.SwitchManagementMapRepository;
+
+    uses dev.davivieira.topologyinventory.application.usecases.RouterManagementUseCase;
+    uses dev.davivieira.topologyinventory.application.usecases.SwitchManagementUseCase;
+    uses dev.davivieira.topologyinventory.application.usecases.NetworkManagementUseCase;
+    uses dev.davivieira.topologyinventory.application.ports.output.RouterManagementOutputPort;
+    uses dev.davivieira.topologyinventory.application.ports.output.SwitchManagementOutputPort;
 }
