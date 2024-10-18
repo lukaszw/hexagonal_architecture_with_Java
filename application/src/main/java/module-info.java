@@ -1,5 +1,5 @@
-import dev.davivieira.topologyinventory.application.adapters.output.memory.RouterManagementMapRepository;
-import dev.davivieira.topologyinventory.application.adapters.output.memory.SwitchManagementMapRepository;
+import dev.davivieira.topologyinventory.application.ports.output.memory.RouterManagementMapRepository;
+import dev.davivieira.topologyinventory.application.ports.output.memory.SwitchManagementMapRepository;
 
 module application {
     exports dev.davivieira.topologyinventory.application.usecases;
@@ -10,8 +10,8 @@ module application {
     requires domain;
     requires static lombok;
 
-    exports dev.davivieira.topologyinventory.application.adapters.output.memory;
-    opens dev.davivieira.topologyinventory.application.adapters.output.memory;
+    exports dev.davivieira.topologyinventory.application.ports.output.memory;
+    opens dev.davivieira.topologyinventory.application.ports.output.memory;
 
     provides dev.davivieira.topologyinventory.application.usecases.RouterManagementUseCase
             with dev.davivieira.topologyinventory.application.ports.input.RouterManagementInputPort;

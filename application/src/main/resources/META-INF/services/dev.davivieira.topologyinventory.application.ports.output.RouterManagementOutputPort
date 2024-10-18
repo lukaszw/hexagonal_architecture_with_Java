@@ -1,1 +1,1 @@
-dev.davivieira.topologyinventory.application.adapters.output.memory.RouterManagementMapRepository
+dev.davivieira.topologyinventory.application.ports.output.memory.RouterManagementMapRepository

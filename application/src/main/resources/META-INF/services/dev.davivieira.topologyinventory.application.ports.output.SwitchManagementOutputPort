@@ -1,1 +1,1 @@
-dev.davivieira.topologyinventory.application.adapters.output.memory.SwitchManagementMapRepository
+dev.davivieira.topologyinventory.application.ports.output.memory.SwitchManagementMapRepository

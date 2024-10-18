@@ -11,6 +11,8 @@ import dev.davivieira.topologyinventory.application.ports.input.RouterManagement
 import dev.davivieira.topologyinventory.application.ports.input.SwitchManagementInputPort;
 import dev.davivieira.topologyinventory.application.ports.output.RouterManagementOutputPort;
 import dev.davivieira.topologyinventory.application.ports.output.SwitchManagementOutputPort;
+import dev.davivieira.topologyinventory.application.ports.output.memory.RouterManagementMapRepository;
+import dev.davivieira.topologyinventory.application.ports.output.memory.SwitchManagementMapRepository;
 import dev.davivieira.topologyinventory.application.usecases.NetworkManagementUseCase;
 import dev.davivieira.topologyinventory.application.usecases.RouterManagementUseCase;
 import dev.davivieira.topologyinventory.application.usecases.SwitchManagementUseCase;

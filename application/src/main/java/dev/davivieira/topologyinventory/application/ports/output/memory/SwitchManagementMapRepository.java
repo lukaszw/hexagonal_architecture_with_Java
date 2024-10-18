@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.application.adapters.output.memory;
+package dev.davivieira.topologyinventory.application.ports.output.memory;
 
 import dev.davivieira.topologyinventory.application.ports.output.SwitchManagementOutputPort;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
