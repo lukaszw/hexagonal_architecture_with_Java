@@ -91,9 +91,23 @@ INSERT INTO switches(switch_id, router_id, switch_type, switch_vendor, switch_mo
 VALUES('922dbcd5-d071-41bd-920b-00f83eb4bb47', 'b07f5187-2d82-4975-a14b-bdbad9a8ad46',
        'LAYER3','CISCO','XYZ0002', 'IPV4', '10.0.0.10', 1);
 
+INSERT INTO switches(switch_id, router_id, switch_type, switch_vendor, switch_model, switch_ip_protocol, switch_ip_address, location_id)
+VALUES('9887cf6d-98df-477d-9750-738aa2615285', 'b832ef4f-f894-4194-8feb-a99c2cd4be0a',
+       'LAYER3','CISCO','XYZ0002', 'IPV4', '40.0.0.10', 1);
+
 INSERT INTO networks(switch_id, network_protocol, network_address, network_name, network_cidr)
 VALUES('922dbcd5-d071-41bd-920b-00f83eb4bb46', 'IPV4', '10.0.0.0', 'HR', '8');
 INSERT INTO networks(switch_id, network_protocol, network_address, network_name, network_cidr)
 VALUES('922dbcd5-d071-41bd-920b-00f83eb4bb46', 'IPV4', '20.0.0.0', 'Marketing', '8');
 INSERT INTO networks(switch_id, network_protocol, network_address, network_name, network_cidr)
 VALUES('922dbcd5-d071-41bd-920b-00f83eb4bb46', 'IPV4', '30.0.0.0', 'Engineering', '8');
+
+INSERT INTO networks(switch_id, network_protocol, network_address, network_name, network_cidr)
+VALUES('9887cf6d-98df-477d-9750-738aa2615285', 'IPV4', '40.0.0.0', 'TestNetwork', '8');
+
+INSERT INTO routers(router_id, router_parent_core_id, router_type,
+                    router_vendor, router_model,
+                    router_ip_protocol, router_ip_address,
+                    location_id)
+VALUES('b832ef4f-f894-4194-8feb-a99c2cd4be0d', 'b832ef4f-f894-4194-8feb-a99c2cd4be0c',
+       'CORE', 'CISCO', 'XYZ0001', 'IPV4', '2.0.0.2', 1);

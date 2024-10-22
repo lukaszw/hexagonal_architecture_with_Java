@@ -49,6 +49,6 @@ public class NetworkTest extends FrameworkTestData {
         Network existentNetwork = NetworkService.findNetwork(networkSwitch.getSwitchNetworks(), predicate);
         assertNotNull(existentNetwork);
         networkSwitch = networkManagementGenericAdapter.removeNetworkFromSwitch(networkName, switchId);
-        assertNull(networkSwitch);
+        assertEquals(0, networkSwitch.getSwitchNetworks().size());
     }
 }

@@ -56,9 +56,7 @@ public class NetworkManagementInputPort implements NetworkManagementUseCase {
         var network = NetworkService.findNetwork(switchToRemoveNetwork.getSwitchNetworks(), networkPredicate);
         switchToRemoveNetwork.removeNetworkFromSwitch(network);
         routerManagementOutputPort.persistRouter(edgeRouter);
-        return switchToRemoveNetwork.removeNetworkFromSwitch(network)
-                ? switchToRemoveNetwork
-                : null;
+        return switchToRemoveNetwork;
     }
 
 }
