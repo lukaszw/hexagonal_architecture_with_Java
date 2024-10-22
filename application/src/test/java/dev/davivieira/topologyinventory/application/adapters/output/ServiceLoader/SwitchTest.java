@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.application;
+package dev.davivieira.topologyinventory.application.adapters.output.ServiceLoader;
 
 import dev.davivieira.topologyinventory.domain.entity.EdgeRouter;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SwitchTest extends FrameworkTestData {
 
-    public SwitchTest(){
+    public SwitchTest() throws NoSuchFieldException, IllegalAccessException {
         loadPortsAndUseCases();
         loadData();
     }

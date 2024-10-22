@@ -13,18 +13,11 @@ import dev.davivieira.topologyinventory.domain.vo.Vendor;
 
 public class RouterManagementGenericAdapter implements RouterManagement {
 
-    private RouterManagementUseCase routerManagementUseCase;
+    private final RouterManagementUseCase routerManagementUseCase;
 
     public RouterManagementGenericAdapter(RouterManagementUseCase routerManagementUseCase) {
-//        setPorts();
         this.routerManagementUseCase = routerManagementUseCase;
     }
-
-//    private void setPorts(){
-//        this.routerManagementUseCase = new RouterManagementInputPort (
-//                RouterManagementH2Adapter.getInstance()
-//        );
-//    }
 
     /**
      * GET /router/retrieve/{id}

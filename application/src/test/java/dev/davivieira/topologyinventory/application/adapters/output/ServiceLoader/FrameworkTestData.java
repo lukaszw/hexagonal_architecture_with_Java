@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.application;
+package dev.davivieira.topologyinventory.application.adapters.output.ServiceLoader;
 
 import dev.davivieira.topologyinventory.application.adapters.NetworkManagementGenericAdapter;
 import dev.davivieira.topologyinventory.application.adapters.RouterManagementGenericAdapter;
@@ -23,6 +23,7 @@ import dev.davivieira.topologyinventory.domain.vo.RouterType;
 import dev.davivieira.topologyinventory.domain.vo.SwitchType;
 import dev.davivieira.topologyinventory.domain.vo.Vendor;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -60,7 +61,7 @@ public class FrameworkTestData {
     protected SwitchManagementGenericAdapter switchManagementGenericAdapter;
     protected NetworkManagementGenericAdapter networkManagementGenericAdapter;
 
-    protected void loadPortsAndUseCases() {
+    protected void loadPortsAndUseCases() throws NoSuchFieldException, IllegalAccessException {
         // Load router implementations
         ServiceLoader<RouterManagementUseCase> loaderUseCaseRouter = ServiceLoader.load(RouterManagementUseCase.class);
         RouterManagementUseCase routerManagementUseCase = loaderUseCaseRouter.findFirst().get();
@@ -82,9 +83,18 @@ public class FrameworkTestData {
         ServiceLoader<NetworkManagementUseCase> loaderUseCaseNetwork = ServiceLoader.load(NetworkManagementUseCase.class);
         NetworkManagementUseCase networkManagementUseCase = loaderUseCaseNetwork.findFirst().get();
 
-        routerManagementUseCase.setOutputPort(routerManagementOutputPort);
-        switchManagementUseCase.setOutputPort(switchManagementOutputPort);
-        networkManagementUseCase.setOutputPort(routerManagementOutputPort);
+//        routerManagementUseCase.setOutputPort(routerManagementOutputPort);
+        Field routerManagementOutputPortField = routerManagementUseCase.getClass().getDeclaredField("routerManagementOutputPort");
+        routerManagementOutputPortField.setAccessible(true);
+        routerManagementOutputPortField.set(routerManagementUseCase, routerManagementOutputPort);
+//        switchManagementUseCase.setOutputPort(switchManagementOutputPort);
+        Field switchManagementOutputPortField = switchManagementUseCase.getClass().getDeclaredField("switchManagementOutputPort");
+        switchManagementOutputPortField.setAccessible(true);
+        switchManagementOutputPortField.set(switchManagementUseCase, switchManagementOutputPort);
+//        networkManagementUseCase.setOutputPort(routerManagementOutputPort);
+        Field routerManagementOutputPortField1 = networkManagementUseCase.getClass().getDeclaredField("routerManagementOutputPort");
+        routerManagementOutputPortField1.setAccessible(true);
+        routerManagementOutputPortField1.set(networkManagementUseCase, routerManagementOutputPort);
 
         this.routerManagementGenericAdapter = new RouterManagementGenericAdapter(routerManagementUseCase);
         this.switchManagementGenericAdapter = new SwitchManagementGenericAdapter(routerManagementUseCase, switchManagementUseCase);

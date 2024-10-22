@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.application;
+package dev.davivieira.topologyinventory.application.adapters.output.ServiceLoader;
 
 import dev.davivieira.topologyinventory.domain.entity.Switch;
 import dev.davivieira.topologyinventory.domain.service.NetworkService;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class NetworkTest extends FrameworkTestData {
 
-    public NetworkTest(){
+    public NetworkTest() throws NoSuchFieldException, IllegalAccessException {
         loadPortsAndUseCases();
         loadData();
     }

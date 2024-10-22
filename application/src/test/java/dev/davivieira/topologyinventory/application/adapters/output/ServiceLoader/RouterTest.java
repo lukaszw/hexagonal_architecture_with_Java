@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.application;
+package dev.davivieira.topologyinventory.application.adapters.output.ServiceLoader;
 
 import dev.davivieira.topologyinventory.domain.entity.CoreRouter;
 import dev.davivieira.topologyinventory.domain.vo.IP;
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RouterTest extends FrameworkTestData {
 
-    public RouterTest() {
+    public RouterTest() throws NoSuchFieldException, IllegalAccessException {
         loadPortsAndUseCases();
         loadData();
     }

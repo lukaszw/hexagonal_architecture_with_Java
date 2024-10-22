@@ -1,9 +1,13 @@
 package dev.davivieira.topologyinventory.application.usecases;
 
-import dev.davivieira.topologyinventory.application.ports.output.RouterManagementOutputPort;
 import dev.davivieira.topologyinventory.domain.entity.CoreRouter;
 import dev.davivieira.topologyinventory.domain.entity.Router;
-import dev.davivieira.topologyinventory.domain.vo.*;
+import dev.davivieira.topologyinventory.domain.vo.IP;
+import dev.davivieira.topologyinventory.domain.vo.Id;
+import dev.davivieira.topologyinventory.domain.vo.Location;
+import dev.davivieira.topologyinventory.domain.vo.Model;
+import dev.davivieira.topologyinventory.domain.vo.RouterType;
+import dev.davivieira.topologyinventory.domain.vo.Vendor;
 
 public interface RouterManagementUseCase {
 
@@ -25,5 +29,4 @@ public interface RouterManagementUseCase {
 
     Router removeRouterFromCoreRouter(Router router, CoreRouter coreRouter);
 
-    void setOutputPort(RouterManagementOutputPort routerManagementOutputPort);
 }

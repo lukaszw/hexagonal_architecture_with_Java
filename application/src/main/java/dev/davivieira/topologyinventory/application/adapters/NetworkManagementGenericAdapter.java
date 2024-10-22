@@ -17,11 +17,6 @@ public class NetworkManagementGenericAdapter implements NetworkManagement {
         this.networkManagementUseCase = networkManagementUseCase;
     }
 
-//    private void setPorts() {
-//        this.switchManagementUseCase = new SwitchManagementInputPort(SwitchManagementH2Adapter.getInstance());
-//        this.networkManagementUseCase = new NetworkManagementInputPort(RouterManagementH2Adapter.getInstance());
-//    }
-
     /**
      * POST /network/add
      */
