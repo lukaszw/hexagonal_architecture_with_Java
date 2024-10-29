@@ -1,6 +1,5 @@
 package dev.davivieira.topologyinventory.application.usecases;
 
-import dev.davivieira.topologyinventory.application.ports.output.RouterManagementOutputPort;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
 import dev.davivieira.topologyinventory.domain.vo.IP;
 import dev.davivieira.topologyinventory.domain.vo.Network;
@@ -16,5 +15,4 @@ public interface NetworkManagementUseCase {
 
     Switch removeNetworkFromSwitch(String name, Switch networkSwitch);
 
-    void setOutputPort(RouterManagementOutputPort routerManagementOutputPort);
 }

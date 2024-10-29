@@ -22,11 +22,6 @@ public class NetworkManagementInputPort implements NetworkManagementUseCase {
     }
 
     @Override
-    public void setOutputPort(RouterManagementOutputPort routerManagementOutputPort) {
-        this.routerManagementOutputPort = routerManagementOutputPort;
-    }
-
-    @Override
     public Network createNetwork(IP networkAddress, String networkName, int networkCidr) {
         return Network
                 .builder()
@@ -61,9 +56,7 @@ public class NetworkManagementInputPort implements NetworkManagementUseCase {
         var network = NetworkService.findNetwork(switchToRemoveNetwork.getSwitchNetworks(), networkPredicate);
         switchToRemoveNetwork.removeNetworkFromSwitch(network);
         routerManagementOutputPort.persistRouter(edgeRouter);
-        return switchToRemoveNetwork.removeNetworkFromSwitch(network)
-                ? switchToRemoveNetwork
-                : null;
+        return switchToRemoveNetwork;
     }
 
 }

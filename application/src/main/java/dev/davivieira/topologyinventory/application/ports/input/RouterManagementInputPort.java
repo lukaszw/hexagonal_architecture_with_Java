@@ -23,11 +23,6 @@ public class RouterManagementInputPort implements RouterManagementUseCase {
     }
 
     @Override
-    public void setOutputPort(RouterManagementOutputPort routerManagementOutputPort) {
-        this.routerManagementOutputPort = routerManagementOutputPort;
-    }
-
-    @Override
     public Router createRouter(Id id,
                                Vendor vendor,
                                Model model,

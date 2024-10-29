@@ -22,17 +22,7 @@ public class SwitchManagementGenericAdapter implements SwitchManagement {
     public SwitchManagementGenericAdapter(RouterManagementUseCase routerManagementUseCase, SwitchManagementUseCase switchManagementUseCase) {
         this.switchManagementUseCase = switchManagementUseCase;
         this.routerManagementUseCase = routerManagementUseCase;
-//        setPorts();
     }
-
-//    private void setPorts() {
-//        this.routerManagementUseCase = new RouterManagementInputPort(
-//                RouterManagementH2Adapter.getInstance()
-//        );
-//        this.switchManagementUseCase = new SwitchManagementInputPort(
-//                SwitchManagementH2Adapter.getInstance()
-//        );
-//    }
 
     /**
      * GET /switch/retrieve/{id}
