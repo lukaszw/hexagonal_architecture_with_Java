@@ -19,6 +19,10 @@ import dev.davivieira.topologyinventory.framework.adapters.output.h2.SwitchManag
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Dependent;
 
+/*
+* Chapter 11
+* */
+
 @Dependent
 public class ProduceBeans {
 
