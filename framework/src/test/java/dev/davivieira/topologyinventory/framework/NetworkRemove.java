@@ -32,7 +32,7 @@ public class NetworkRemove {
 
     @Given("I know the network I want to remove")
     public void i_know_the_network_i_want_to_remove() {
-        networkSwitch = switchManagementUseCase.retrieveSwitch(Id.withId("9887cf6d-98df-477d-9750-738aa2615285"));
+        networkSwitch = switchManagementUseCase.retrieveSwitch(Id.withId("fdd6f769-a4e4-4b5e-b59a-516543775abc"));
         predicate = Network.getNetworkNamePredicate("TestNetwork");
         network = NetworkService.findNetwork(networkSwitch.getSwitchNetworks(), predicate);
         assertEquals("TestNetwork", network.getNetworkName());

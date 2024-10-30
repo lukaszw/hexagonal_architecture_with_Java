@@ -36,7 +36,7 @@ public class NetworkAdd {
 
     @And("I have a switch to add a network")
     public void i_have_a_switch_to_add_a_network() {
-        networkSwitch = switchManagementUseCase.retrieveSwitch(Id.withId("9887cf6d-98df-477d-9750-738aa2615285"));
+        networkSwitch = switchManagementUseCase.retrieveSwitch(Id.withId("fdd6f769-a4e4-4b5e-b59a-516543775abc"));
         assertNotNull(networkSwitch);
     }
 

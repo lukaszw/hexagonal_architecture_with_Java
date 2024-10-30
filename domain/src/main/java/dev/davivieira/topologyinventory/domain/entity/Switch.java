@@ -22,8 +22,8 @@ import java.util.function.Predicate;
 public final class Switch extends Equipment {
 
     private SwitchType switchType;
+    @Setter
     private List<Network> switchNetworks;
-
     @Setter
     private Id routerId;
 
