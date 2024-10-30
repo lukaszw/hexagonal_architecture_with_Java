@@ -30,7 +30,7 @@ public class RouterRemove {
     @Given("The core router has at least one edge router connected to it")
     public void the_core_router_has_at_least_one_edge_router_connected_to_it() {
         var predicate = Router.getRouterTypePredicate(EDGE);
-        this.coreRouter = (CoreRouter) routerManagementUseCase.retrieveRouter(Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c"));
+        this.coreRouter = (CoreRouter) routerManagementUseCase.retrieveRouter(Id.withId("19a22cc8-91c9-4078-9d6f-3a5486de6ac9"));
         edgeRouter = (EdgeRouter) this.coreRouter.
                 getRouters().
                 entrySet().
@@ -44,7 +44,7 @@ public class RouterRemove {
 
     @And("The switch has no networks attached to it")
     public void the_switch_has_no_networks_attached_to_it() {
-        networkSwitch = edgeRouter.getSwitches().get(Id.withId("9887cf6d-98df-477d-9750-738aa2615285"));
+        networkSwitch = edgeRouter.getSwitches().get(Id.withId("fdd6f769-a4e4-4b5e-b59a-516543775abc"));
         var networksSize = networkSwitch.getSwitchNetworks().size();
         assertEquals(1, networksSize);
         Network network = networkSwitch.getSwitchNetworks().get(0);
