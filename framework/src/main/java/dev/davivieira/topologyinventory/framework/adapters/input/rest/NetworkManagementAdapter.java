@@ -10,28 +10,21 @@ import dev.davivieira.topologyinventory.framework.adapters.input.rest.request.ne
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.DELETE;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.Response;
-import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 @ApplicationScoped
-@Path("/network")
-@Tag(name = "Network Operations", description = "Network management operations")
-public class NetworkManagementAdapter {
+public class NetworkManagementAdapter implements NetworkManagementAdapterApi {
+
+    private final SwitchManagementUseCase switchManagementUseCase;
+    private final NetworkManagementUseCase networkManagementUseCase;
 
     @Inject
-    SwitchManagementUseCase switchManagementUseCase;
-    @Inject
-    NetworkManagementUseCase networkManagementUseCase;
+    public NetworkManagementAdapter(SwitchManagementUseCase switchManagementUseCase, NetworkManagementUseCase networkManagementUseCase) {
+        this.switchManagementUseCase = switchManagementUseCase;
+        this.networkManagementUseCase = networkManagementUseCase;
+    }
 
-    @POST
-    @Path("/add/{switchId}")
-    @Operation(operationId = "addNetworkToSwitch", description = "Add network to a switch")
-    public Uni<Response> addNetworkToSwitch(AddNetwork addNetwork, @PathParam("switchId") Id switchId) {
+    public Uni<Response> addNetworkToSwitch(AddNetwork addNetwork, Id switchId) {
         Switch networkSwitch = switchManagementUseCase.retrieveSwitch(switchId);
 
         Network network = Network.builder()
@@ -48,10 +41,7 @@ public class NetworkManagementAdapter {
                 .transform(Response.ResponseBuilder::build);
     }
 
-    @DELETE
-    @Path("/{networkName}/from/{switchId}")
-    @Operation(operationId = "removeNetworkFromSwitch", description = "Remove network from a switch")
-    public Uni<Response> removeNetworkFromSwitch(@PathParam("networkName") String networkName, @PathParam("switchId") Id switchId) {
+    public Uni<Response> removeNetworkFromSwitch(String networkName, Id switchId) {
         Switch networkSwitch = switchManagementUseCase.retrieveSwitch(switchId);
 
         return Uni.createFrom()

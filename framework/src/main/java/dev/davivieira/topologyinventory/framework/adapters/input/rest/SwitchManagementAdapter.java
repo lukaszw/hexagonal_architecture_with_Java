@@ -12,29 +12,21 @@ import dev.davivieira.topologyinventory.framework.adapters.input.rest.request.as
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.DELETE;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.Response;
-import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 @ApplicationScoped
-@Path("/switch")
-@Tag(name = "Switch Operations", description = "Operations for switch management")
-public class SwitchManagementAdapter {
+public class SwitchManagementAdapter implements SwitchManagementAdapterApi {
+
+    private final SwitchManagementUseCase switchManagementUseCase;
+    private final RouterManagementUseCase routerManagementUseCase;
 
     @Inject
-    SwitchManagementUseCase switchManagementUseCase;
-    @Inject
-    RouterManagementUseCase routerManagementUseCase;
+    public SwitchManagementAdapter(SwitchManagementUseCase switchManagementUseCase, RouterManagementUseCase routerManagementUseCase) {
+        this.switchManagementUseCase = switchManagementUseCase;
+        this.routerManagementUseCase = routerManagementUseCase;
+    }
 
-    @GET
-    @Path("/{id}")
-    @Operation(operationId = "retrieveSwitch", description = "Retrieve a switch from an edge router")
-    public Uni<Response> retrieveSwitch(@PathParam("id") Id switchId) {
+    public Uni<Response> retrieveSwitch(Id switchId) {
         return Uni.createFrom()
                 .item(switchManagementUseCase.retrieveSwitch(switchId))
                 .onItem()
@@ -43,21 +35,16 @@ public class SwitchManagementAdapter {
                 .transform(Response.ResponseBuilder::build);
     }
 
-    @POST
-    @Path("/create/{edgeRouterId}")
-    @Operation(operationId = "createAndAddSwitchToEdgeRouter", description = "Create switch and add to an edge router")
-    public Uni<Response> createAndAddSwitchToEdgeRouter(
-            CreateSwitch createSwitch, @PathParam("edgeRouterId") Id edgeRouterId
-    ) {
-        Switch newSwitch = switchManagementUseCase.
-                createSwitch(
-                        createSwitch.getVendor(),
-                        createSwitch.getModel(),
-                        IP.fromAddress(createSwitch.getIp()),
-                        createSwitch.getLocation(),
-                        createSwitch.getSwitchType());
+    public Uni<Response> createAndAddSwitchToEdgeRouter(CreateSwitch createSwitch, Id edgeRouterId) {
+        Switch newSwitch = switchManagementUseCase.createSwitch(
+                createSwitch.getVendor(),
+                createSwitch.getModel(),
+                IP.fromAddress(createSwitch.getIp()),
+                createSwitch.getLocation(),
+                createSwitch.getSwitchType()
+        );
         Router edgeRouter = routerManagementUseCase.retrieveRouter(edgeRouterId);
-        if(!edgeRouter.getRouterType().equals(RouterType.EDGE))
+        if (!edgeRouter.getRouterType().equals(RouterType.EDGE))
             throw new UnsupportedOperationException("Please inform the id of an edge router to add a switch");
         Router router = switchManagementUseCase.addSwitchToEdgeRouter(newSwitch, (EdgeRouter) edgeRouter);
 
@@ -69,16 +56,10 @@ public class SwitchManagementAdapter {
                 .transform(Response.ResponseBuilder::build);
     }
 
-    @DELETE
-    @Path("/{switchId}/from/{edgeRouterId}")
-    @Operation(operationId = "removeSwitch", description = "Retrieve a router from the network inventory")
-    public Uni<Response> removeSwitchFromEdgeRouter(
-            @PathParam("switchId") Id switchId, @PathParam("edgeRouterId") Id edgeRouterId) {
-        EdgeRouter edgeRouter = (EdgeRouter) routerManagementUseCase
-                .retrieveRouter(edgeRouterId);
+    public Uni<Response> removeSwitchFromEdgeRouter(Id switchId, Id edgeRouterId) {
+        EdgeRouter edgeRouter = (EdgeRouter) routerManagementUseCase.retrieveRouter(edgeRouterId);
         Switch networkSwitch = edgeRouter.getSwitches().get(switchId);
-        Router router = switchManagementUseCase
-                .removeSwitchFromEdgeRouter(networkSwitch, edgeRouter);
+        Router router = switchManagementUseCase.removeSwitchFromEdgeRouter(networkSwitch, edgeRouter);
 
         return Uni.createFrom()
                 .item((EdgeRouter) routerManagementUseCase.persistRouter(router))
