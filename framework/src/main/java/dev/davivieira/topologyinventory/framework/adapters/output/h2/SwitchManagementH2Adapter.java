@@ -14,11 +14,11 @@ public class SwitchManagementH2Adapter implements SwitchManagementOutputPort {
 
     private static SwitchManagementH2Adapter instance;
 
-    @PersistenceContext
+//    @PersistenceContext
     private EntityManager em;
 
     public SwitchManagementH2Adapter() {
-        setUpH2Database();
+//        setUpH2Database();
     }
 
     @Override

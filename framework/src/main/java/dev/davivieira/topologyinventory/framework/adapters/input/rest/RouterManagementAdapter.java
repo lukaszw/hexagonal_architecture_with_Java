@@ -8,16 +8,12 @@ import dev.davivieira.topologyinventory.domain.vo.Id;
 import dev.davivieira.topologyinventory.framework.adapters.input.rest.request.router.AddRouter;
 import dev.davivieira.topologyinventory.framework.adapters.input.rest.request.router.CreateRouter;
 import io.smallrye.mutiny.Uni;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
 
-@ApplicationScoped
 public class RouterManagementAdapter implements RouterManagementAdapterApi {
 
     private final RouterManagementUseCase routerManagementUseCase;
 
-    @Inject
     public RouterManagementAdapter(RouterManagementUseCase routerManagementUseCase) {
         this.routerManagementUseCase = routerManagementUseCase;
     }

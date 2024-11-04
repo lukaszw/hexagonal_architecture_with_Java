@@ -8,7 +8,8 @@ module dev.davivieira.bootstrap {
     requires jakarta.inject;
     requires jakarta.validation;
     requires quarkus.hibernate.orm;
-    requires quarkus.jdbc.h2;
+//    requires quarkus.jdbc.h2;
+    requires quarkus.reactive.mysql.client;
     requires jakarta.persistence;
     requires jakarta.transaction;
     requires lombok;

@@ -3,6 +3,7 @@ package dev.davivieira.topologyinventory.framework.adapters.input.rest;
 import dev.davivieira.topologyinventory.domain.vo.Id;
 import dev.davivieira.topologyinventory.framework.adapters.input.rest.request.network.AddNetwork;
 import io.smallrye.mutiny.Uni;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -15,11 +16,13 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 @Tag(name = "Network Operations", description = "Network management operations")
 public interface NetworkManagementAdapterApi {
 
+    @Transactional
     @POST
     @Path("/add/{switchId}")
     @Operation(operationId = "addNetworkToSwitch", description = "Add network to a switch")
     Uni<Response> addNetworkToSwitch(AddNetwork addNetwork, @PathParam("switchId") Id switchId);
 
+    @Transactional
     @DELETE
     @Path("/{networkName}/from/{switchId}")
     @Operation(operationId = "removeNetworkFromSwitch", description = "Remove network from a switch")

@@ -14,11 +14,11 @@ public class RouterManagementH2Adapter implements RouterManagementOutputPort {
 
     private static RouterManagementH2Adapter instance;
 
-    @PersistenceContext
+//    @PersistenceContext
     private EntityManager em;
 
     public RouterManagementH2Adapter(){
-        setUpH2Database();
+//        setUpH2Database();
     }
 
     @Override

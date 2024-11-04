@@ -7,6 +7,7 @@ import dev.davivieira.topologyinventory.domain.vo.Model;
 import dev.davivieira.topologyinventory.domain.vo.RouterType;
 import dev.davivieira.topologyinventory.domain.vo.Vendor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.function.Predicate;
 
@@ -14,6 +15,8 @@ import java.util.function.Predicate;
 public abstract sealed class Router extends Equipment permits CoreRouter, EdgeRouter {
 
     protected final RouterType routerType;
+    @Setter
+    protected Id parentRouterId;
 
     public static Predicate<Equipment> getRouterTypePredicate(RouterType routerType) {
         return r -> ((Router) r).getRouterType().equals(routerType);
@@ -27,8 +30,9 @@ public abstract sealed class Router extends Equipment permits CoreRouter, EdgeRo
         return p -> p.location.country().equals(location.country());
     }
 
-    public Router(Id id, Vendor vendor, Model model, IP ip, Location location, RouterType routerType) {
+    public Router(Id id, Vendor vendor, Model model, IP ip, Location location, RouterType routerType, Id parentRouterId) {
         super(id, vendor, model, ip, location);
         this.routerType = routerType;
+        this.parentRouterId = parentRouterId;
     }
 }

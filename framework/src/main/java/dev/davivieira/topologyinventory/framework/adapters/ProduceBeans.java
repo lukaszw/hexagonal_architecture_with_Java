@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.framework.adapters.input.generic;
+package dev.davivieira.topologyinventory.framework.adapters;
 
 import dev.davivieira.topologyinventory.application.NetworkManagement;
 import dev.davivieira.topologyinventory.application.RouterManagement;
@@ -26,12 +26,12 @@ import jakarta.enterprise.context.Dependent;
 @Dependent
 public class ProduceBeans {
 
-    @ApplicationScoped
+//    @ApplicationScoped
     public RouterManagementOutputPort getRouterManagementOutputPort() {
         return new RouterManagementH2Adapter();
     }
 
-    @ApplicationScoped
+//    @ApplicationScoped
     public SwitchManagementOutputPort getSwitchManagementOutputPort() {
         return new SwitchManagementH2Adapter();
     }
@@ -42,26 +42,26 @@ public class ProduceBeans {
     }
 
     @ApplicationScoped
-    public SwitchManagementUseCase getRouterManagementInputPort(SwitchManagementOutputPort switchManagementOutputPort) {
+    public SwitchManagementUseCase getSwitchManagementInputPort(SwitchManagementOutputPort switchManagementOutputPort) {
         return new SwitchManagementInputPort(switchManagementOutputPort);
     }
 
     @ApplicationScoped
-    public NetworkManagementInputPort getNetworkManagementInputPort(RouterManagementOutputPort routerManagementOutputPort) {
+    public NetworkManagementUseCase getNetworkManagementInputPort(RouterManagementOutputPort routerManagementOutputPort) {
         return new NetworkManagementInputPort(routerManagementOutputPort);
     }
 
-    @ApplicationScoped
+//    @ApplicationScoped
     public SwitchManagement getSwitchManagementGenericAdapter(RouterManagementUseCase routerManagementUseCase, SwitchManagementUseCase switchManagementUseCase) {
         return new SwitchManagementGenericAdapter(routerManagementUseCase, switchManagementUseCase);
     }
 
-    @ApplicationScoped
+//    @ApplicationScoped
     public RouterManagement getRouterManagementGenericAdapter(RouterManagementUseCase routerManagementUseCase) {
         return new RouterManagementGenericAdapter(routerManagementUseCase);
     }
 
-    @ApplicationScoped
+//    @ApplicationScoped
     public NetworkManagement getNetworkManagementGenericAdapter(SwitchManagementUseCase switchManagementInputPort, NetworkManagementUseCase networkManagementUseCase) {
         return new NetworkManagementGenericAdapter(switchManagementInputPort, networkManagementUseCase);
     }

@@ -10,17 +10,13 @@ import dev.davivieira.topologyinventory.domain.vo.Id;
 import dev.davivieira.topologyinventory.domain.vo.RouterType;
 import dev.davivieira.topologyinventory.framework.adapters.input.rest.request.aswitch.CreateSwitch;
 import io.smallrye.mutiny.Uni;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
 
-@ApplicationScoped
 public class SwitchManagementAdapter implements SwitchManagementAdapterApi {
 
     private final SwitchManagementUseCase switchManagementUseCase;
     private final RouterManagementUseCase routerManagementUseCase;
 
-    @Inject
     public SwitchManagementAdapter(SwitchManagementUseCase switchManagementUseCase, RouterManagementUseCase routerManagementUseCase) {
         this.switchManagementUseCase = switchManagementUseCase;
         this.routerManagementUseCase = routerManagementUseCase;

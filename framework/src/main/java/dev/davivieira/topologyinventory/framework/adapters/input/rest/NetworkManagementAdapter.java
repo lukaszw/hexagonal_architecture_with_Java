@@ -8,17 +8,13 @@ import dev.davivieira.topologyinventory.domain.vo.Id;
 import dev.davivieira.topologyinventory.domain.vo.Network;
 import dev.davivieira.topologyinventory.framework.adapters.input.rest.request.network.AddNetwork;
 import io.smallrye.mutiny.Uni;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
 
-@ApplicationScoped
 public class NetworkManagementAdapter implements NetworkManagementAdapterApi {
 
     private final SwitchManagementUseCase switchManagementUseCase;
     private final NetworkManagementUseCase networkManagementUseCase;
 
-    @Inject
     public NetworkManagementAdapter(SwitchManagementUseCase switchManagementUseCase, NetworkManagementUseCase networkManagementUseCase) {
         this.switchManagementUseCase = switchManagementUseCase;
         this.networkManagementUseCase = networkManagementUseCase;
